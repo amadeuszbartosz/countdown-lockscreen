@@ -15,24 +15,35 @@ GRAY = (80, 80, 80)
 DARK_GRAY = (150, 150, 150)
 BLACK = (0, 0, 0)
 
-# Function to draw a blurred shrinking circle
+# Function to draw a blurred shrinking circle with controlled brightness
 def draw_shrinking_circle(img, day, total_days):
     max_radius = WIDTH // 2
     min_radius = WIDTH // 8
     circle_radius = max_radius - (day / total_days) * (max_radius - min_radius)
-    
+
+    # Color shifting logic: maintain vibrancy, prevent dull grays
+    start_color = (80, 120, 255)  # Vibrant blue at the start
+    end_color = (40, 90, 200)     # Slightly darker but still vibrant blue
+
+    # Calculate color interpolation
+    r = start_color[0] + (end_color[0] - start_color[0]) * (day / total_days)
+    g = start_color[1] + (end_color[1] - start_color[1]) * (day / total_days)
+    b = start_color[2] + (end_color[2] - start_color[2]) * (day / total_days)
+
+    alpha_value = int(250 - (day / total_days) * 80)  # Maintain some transparency but not too much
+
     circle_img = Image.new('RGBA', (WIDTH, HEIGHT), (0, 0, 0, 0))
     circle_draw = ImageDraw.Draw(circle_img)
-    
+
     center_x, center_y = WIDTH // 2, HEIGHT // 2
     circle_draw.ellipse(
         (center_x - circle_radius, center_y - circle_radius, 
          center_x + circle_radius, center_y + circle_radius), 
-        fill=(50, 50, 150, 200)  # Dark blue with transparency
+        fill=(int(r), int(g), int(b), alpha_value)  # Smooth color transition with consistent vibrancy
     )
 
-    # Apply Gaussian blur for a smooth glow effect
-    blurred_circle = circle_img.filter(ImageFilter.GaussianBlur(100))
+    # Apply Gaussian blur for a soft glow effect
+    blurred_circle = circle_img.filter(ImageFilter.GaussianBlur(120))
     img.paste(blurred_circle, (0, 0), blurred_circle)
 
 def generate_countdown_images():
