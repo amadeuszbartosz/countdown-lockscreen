@@ -5,6 +5,7 @@ from ttkbootstrap.constants import *
 from PIL import Image, ImageDraw, ImageTk, ImageFilter
 import subprocess
 import os
+import sys
 
 # Function to create a blurred circular preview
 def create_color_circle(color_hex, size=(150, 150)):
@@ -52,9 +53,12 @@ def generate_images():
 
     if folder and start_color and end_color:
         try:
+            # Determine script path correctly
+            script_path = os.path.join(os.path.dirname(sys.executable), "CreateLockscreens.py") if getattr(sys, 'frozen', False) else "CreateLockscreens.py"
+            
             result = subprocess.run(
                 [
-                    "python", "CreateLockscreens.py",
+                    "python", script_path,
                     "--start-color", f"{int(start_color[:2], 16)},{int(start_color[2:4], 16)},{int(start_color[4:], 16)}",
                     "--end-color", f"{int(end_color[:2], 16)},{int(end_color[2:4], 16)},{int(end_color[4:], 16)}",
                     "--message", message,
