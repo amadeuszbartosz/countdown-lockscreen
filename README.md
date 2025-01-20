@@ -1,60 +1,41 @@
-## Countdown Lockscreen Setup Guide
+# Countdown Lockscreen
 
-Welcome to the Countdown Lockscreen project! This guide will walk you through setting up your environment, generating lock screen images, and automating their updates to your iPhone.
+## Overview
+This project generates a series of 365 lock screen images for iPhone, displaying a countdown to the new year with a stylish dot grid and a dynamic shrinking blurred circle effect. Each image is dated and stored in iCloud, with an iOS Shortcut automation to update the lock screen daily.
 
-### Prerequisites ✅
-- Python 3 installed
-- Virtual environment (`venv`) setup
-- Git installed
-- iCloud Drive enabled on your Mac/iPhone
+## 🚀 How to Use
 
----
+1. **Download the latest release:**
+   - [Download Here](https://github.com/YOUR_USERNAME/YOUR_REPO/releases)
 
-### Steps to Set Up the Project ⚙️
+2. **Run the executable:**
+   - On macOS, double-click `CountdownLockscreen` or run:
+     ```bash
+     ./CountdownLockscreen
+     ```
+   - On Windows, double-click `CountdownLockscreen.exe`
 
-#### 1. Clone the Repository 🛠️
-```bash
-git clone https://github.com/yourusername/countdown-lockscreen.git
-cd countdown-lockscreen
-```
+3. **Customize your countdown:**
+   - Choose start and end colors.
+   - Add a custom message (optional).
+   - Select your phone model.
+   - Choose a save location.
 
-#### 2. Set Up the Virtual Environment 🐍
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
-```
+4. **Generate images:**
+   - Click `Generate Images`, and your countdown wallpapers will be created!
 
-#### 3. Install Dependencies 📦
-```bash
-pip install -r requirements.txt
-```
+## 🛠 Prerequisites
 
-#### 4. Generate Countdown Images 🖼️
-```bash
-python CreateLockscreens.py
-```
-This will generate all lock screen images and save them as a ZIP file named `countdown_photos.zip`.
+- No installation required! Just download and run.
+- Works on macOS and Windows.
 
-#### 5. Upload to iCloud 📤
-1. Unzip `countdown_photos.zip`.
-2. Move the extracted folder to `iCloud Drive > Shortcuts`.
+## 📝 Features
 
-#### 6. Create iOS Shortcut ⚡
-1. Open the **Shortcuts** app on your iPhone.
-2. Create a new automation:
-   - **Trigger:** `Time of Day` (e.g., Midnight)
-   - **Action:** `Find Photos in iCloud` > `Set Wallpaper`
-3. Select the countdown folder and configure it to update your lock screen daily.
-
-#### 7. Enjoy Your Dynamic Lock Screen 🎉
-Now, your iPhone will update the lock screen every day with the countdown image!
+- Supports iPhone screen resolutions
+- Customizable colors and messages
+- Auto-dated wallpapers for each day
+- Easy automation with iCloud and Shortcuts
 
 ---
 
-### Contributing 🤝
-If you want to improve this project, feel free to fork it, submit pull requests, and share feedback!
-
----
-
-### License 📄
-This project is licensed under the MIT License.
+Enjoy your custom countdown wallpapers! 🎉
