@@ -91,7 +91,23 @@ Now, let's make sure the shortcut runs automatically every day.
 4. Select **"Run Shortcut"**, then choose the countdown shortcut created earlier.
 5. Disable **"Ask Before Running"** to ensure automation runs automatically.
 
-📸 ![automation](https://github.com/user-attachments/assets/3b90bffa-b8a3-4b93-b749-3e17e577de23)
+📸 ![automation](https://github.com/user-attachments/assets/3b90bffa-b8a3-4b93-b749-3e17e577de23) 
+
+---
+
+## Countdown Lockscreen Example 📱
+
+Below is an example of the generated countdown lockscreen in action on an iPhone.
+
+<img src="https://github.com/user-attachments/assets/12582fac-4941-4dd8-8582-61b3ed476120" alt="final" width="500"/>
+
+This lockscreen dynamically updates daily using the generated images stored in iCloud. The grid of dots represents the days left in the year, while the shrinking blurred circle changes color over time based on your selected gradient.
+
+### Features:
+- 📅 **Automatic daily updates** via iOS Shortcuts automation.
+- 🎨 **Customizable gradient colors** to match your style.
+- 📂 **Easy setup** with a simple GUI application to generate all images at once.
+- 🕰️ **Accurate countdown visualization** with percentage and year indicators.
 
 ---
 
@@ -115,12 +131,6 @@ Feel free to contribute to this project by submitting issues, feature requests, 
 ## License 📄
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## Credits 🙌
-
-Special thanks to all contributors and testers who helped bring this project to life.
 
 ---
 
