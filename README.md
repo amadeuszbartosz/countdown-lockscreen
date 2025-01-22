@@ -53,7 +53,7 @@ Follow these steps to download, run the executable, and automate the countdown w
 Once you've generated your countdown images, transfer them to your iPhone:
 
 #### **Using AirDrop (Recommended for MacOS users):**
-1. Select all the generated images in Finder.
+1. Select all the generated images in Finder. Right click, and compress them as a .zip
 2. Right-click and choose **"Share" > "AirDrop"**.
 3. Send the images to your iPhone.
 
