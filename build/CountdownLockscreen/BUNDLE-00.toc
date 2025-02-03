@@ -1,4 +1,0 @@
-([('CountdownLockscreen',
-   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
-   'Lockerscreen/dist/CountdownLockscreen',
-   'EXECUTABLE')],)

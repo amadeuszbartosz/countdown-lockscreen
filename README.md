@@ -1,6 +1,23 @@
 # Countdown Lockscreen 📱
 
-Welcome to the **Countdown Lockscreen** project! This tool generates a series of 365 lock screen images for iPhone, displaying a countdown to the new year with a stylish dot grid and a dynamic shrinking blurred circle effect. The images are designed to automatically update your lock screen daily using iCloud and Apple's Shortcuts app.
+Welcome to the **Countdown Lockscreen** application. This tool generates 365 lock screen images for your iPhone, each displaying a countdown to the New Year with a dynamic dot grid and blurred circle effect.
+
+---
+
+## For Non-Developers
+1. Go to the **Releases** section and download the latest version of the CountdownCreator Application.
+2. Double-click the downloaded `CountdownCreator` app to launch it.
+3. In the app, set the **start** and **end** colors, and enter a custom message if desired.
+4. Choose an output folder where your images will be saved.
+5. Once the images are generated, AirDrop them (or use your preferred method) and add them under a folder (for example, `countdown_photos`) on your device as shown in the screenshot.
+
+---
+
+## For Developers
+- The new entry point is `app.py`. Old backend files (such as `CreateLockScreens.py` and `custom_gui.py`) can now be added to your `.gitignore`.
+- Spec files are required for building executables and should not be ignored.
+- To run or customize the project, open it in your IDE and modify `app.py` or the spec files as needed.
+- Note: Shortcuts for other phone models aren’t fully set up yet, but you can still generate images for them.
 
 ---
 
@@ -119,6 +136,8 @@ If you encounter any issues, try the following:
 - Check that iCloud Drive is enabled and synced.
 - Verify automation permissions under **Settings > Shortcuts**.
 - If running on macOS, allow the app in **Security & Privacy > Full Disk Access**.
+- **macOS Unverified Developer Issue:**  
+  If you see a warning message like "can’t check for malicious software" or "unverified developer", open **System Preferences > Security & Privacy > General** and click **"Allow Anyway"** to permit the app to run.
 
 ---
 
@@ -133,6 +152,42 @@ Feel free to contribute to this project by submitting issues, feature requests, 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
+
+## Cross-Platform Build Instructions
+
+1. Install PyInstaller:
+   $ pip install pyinstaller
+
+2. In your project root (where CreateLockscreens.py is located), modify CreateLockscreens.py to run the "SetFile" command only on macOS:
+   - Use an OS check (see next file for example).
+
+3. Build the backend executable:
+   On macOS:
+     $ pyinstaller --onefile --console CreateLockscreens.py
+   On Windows:
+     $ pyinstaller --onefile --console CreateLockscreens.py
+
+4. Verify in the "dist" folder you have:
+   - macOS: "CreateLockscreens" (without extension)
+   - Windows: "CreateLockscreens.exe"
+
+5. Ensure both the GUI and backend executables are bundled together in your release.
+
+## Steps to Build the Backend Executable:
+
+1. Install PyInstaller if necessary:
+   $ pip install pyinstaller
+
+2. In the terminal, run:
+   $ pyinstaller --onefile --console CreateLockscreens.py
+
+3. Check the "dist" folder. You should see:
+   dist/
+      └── CreateLockscreens   (or CreateLockscreens.exe for Windows)
+
+4. Ensure this executable is bundled with your GUI app. The GUI (custom_gui.py) should call the backend executable using its path.
+
+5. Package both the GUI app and the CreateLockscreens executable in your release so users can run everything out-of-the-box.
 
 Enjoy your countdown journey! 🎉
 

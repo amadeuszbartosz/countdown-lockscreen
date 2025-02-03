@@ -1,0 +1,78 @@
+('/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+ 'Lockerscreen/build/CountdownCreator/CountdownCreator.pkg',
+ {'BINARY': True,
+  'DATA': True,
+  'EXECUTABLE': True,
+  'EXTENSION': True,
+  'PYMODULE': True,
+  'PYSOURCE': True,
+  'PYZ': False,
+  'SPLASH': True,
+  'SYMLINK': False},
+ [('pyi-contents-directory _internal', '', 'OPTION'),
+  ('PYZ-00.pyz',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/build/CountdownCreator/PYZ-00.pyz',
+   'PYZ'),
+  ('lib-dynload/_struct.cpython-313-darwin.so',
+   '/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_struct.cpython-313-darwin.so',
+   'EXTENSION'),
+  ('lib-dynload/zlib.cpython-313-darwin.so',
+   '/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/zlib.cpython-313-darwin.so',
+   'EXTENSION'),
+  ('struct',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/build/CountdownCreator/localpycs/struct.pyc',
+   'PYMODULE'),
+  ('pyimod01_archive',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/build/CountdownCreator/localpycs/pyimod01_archive.pyc',
+   'PYMODULE'),
+  ('pyimod02_importers',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/build/CountdownCreator/localpycs/pyimod02_importers.pyc',
+   'PYMODULE'),
+  ('pyimod03_ctypes',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/build/CountdownCreator/localpycs/pyimod03_ctypes.pyc',
+   'PYMODULE'),
+  ('pyiboot01_bootstrap',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/venv/lib/python3.13/site-packages/PyInstaller/loader/pyiboot01_bootstrap.py',
+   'PYSOURCE'),
+  ('pyi_rth_inspect',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/venv/lib/python3.13/site-packages/PyInstaller/hooks/rthooks/pyi_rth_inspect.py',
+   'PYSOURCE'),
+  ('pyi_rth_pkgres',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/venv/lib/python3.13/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgres.py',
+   'PYSOURCE'),
+  ('pyi_rth_setuptools',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/venv/lib/python3.13/site-packages/PyInstaller/hooks/rthooks/pyi_rth_setuptools.py',
+   'PYSOURCE'),
+  ('pyi_rth_multiprocessing',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/venv/lib/python3.13/site-packages/PyInstaller/hooks/rthooks/pyi_rth_multiprocessing.py',
+   'PYSOURCE'),
+  ('pyi_rth_pkgutil',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/venv/lib/python3.13/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgutil.py',
+   'PYSOURCE'),
+  ('pyi_rth__tkinter',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/venv/lib/python3.13/site-packages/PyInstaller/hooks/rthooks/pyi_rth__tkinter.py',
+   'PYSOURCE'),
+  ('app',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/app.py',
+   'PYSOURCE')],
+ 'Python',
+ True,
+ False,
+ False,
+ [],
+ 'arm64',
+ None,
+ None)

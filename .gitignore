@@ -4,3 +4,10 @@ __pycache__/
 *.zip
 *.png
 .DS_Store
+
+# Ignore old backend files
+CreateLockScreens.py
+custom_gui.py
+
+# Do not ignore spec files (needed for building executables)
+!*.spec

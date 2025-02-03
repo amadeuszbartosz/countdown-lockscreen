@@ -1,0 +1,4 @@
+([('Countdown Creator',
+   '/Users/amadeuszbartosz/Desktop/Projects/Yearly Countdown - '
+   'Lockerscreen/dist/Countdown Creator',
+   'EXECUTABLE')],)

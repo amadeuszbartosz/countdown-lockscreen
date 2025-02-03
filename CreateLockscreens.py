@@ -107,7 +107,10 @@ def generate_countdown_images(start_color, end_color, custom_message, output_fol
 
         mod_time = current_day.timestamp()
         os.utime(filename, (mod_time, mod_time))
-        subprocess.run(["SetFile", "-d", current_day.strftime('%m/%d/%Y %H:%M:%S'), filename])
+        # Only run SetFile on macOS
+        import sys
+        if sys.platform.startswith("darwin"):
+            subprocess.run(["SetFile", "-d", current_day.strftime('%m/%d/%Y %H:%M:%S'), filename])
 
         print(f"Image saved: {filename}")
 

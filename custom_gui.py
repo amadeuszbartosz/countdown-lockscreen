@@ -6,6 +6,9 @@ from PIL import Image, ImageDraw, ImageTk, ImageFilter
 import subprocess
 import os
 import sys
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Function to create a blurred circular preview
 def create_color_circle(color_hex, size=(150, 150)):
@@ -51,32 +54,70 @@ def generate_images():
     phone_model = selected_phone.get()
     width, height = phone_options[phone_model]
 
-    if folder and start_color and end_color:
-        try:
-            # Determine script path correctly
-            script_path = os.path.join(os.path.dirname(sys.executable), "CreateLockscreens.py") if getattr(sys, 'frozen', False) else "CreateLockscreens.py"
-            
-            result = subprocess.run(
-                [
-                    "python", script_path,
-                    "--start-color", f"{int(start_color[:2], 16)},{int(start_color[2:4], 16)},{int(start_color[4:], 16)}",
-                    "--end-color", f"{int(end_color[:2], 16)},{int(end_color[2:4], 16)},{int(end_color[4:], 16)}",
-                    "--message", message,
-                    "--output-folder", folder,
-                    "--width", str(width),
-                    "--height", str(height)
-                ],
-                capture_output=True,
-                text=True,
-                check=True
-            )
-            messagebox.showinfo("Success", "Countdown images have been generated successfully!")
-            print(result.stdout)
-        except subprocess.CalledProcessError as e:
-            messagebox.showerror("Error", f"Failed to generate images.\n{e.stderr}")
-            print("Error:", e.stderr)
-    else:
+    if not folder or not start_color or not end_color:
         messagebox.showwarning("Warning", "Please fill all fields before generating images.")
+        return
+
+    try:
+        # Determine the backend executable/script path:
+        if getattr(sys, 'frozen', False):
+            # Go up three levels from the GUI executable inside Countdown Creator.app
+            base_path = os.path.abspath(os.path.join(os.path.dirname(sys.executable), "..", "..", ".."))
+            backend_path = os.path.join(
+                base_path,
+                "CreateLockScreens.app",
+                "Contents",
+                "MacOS",
+                "CreateLockScreens"
+            )
+        else:
+            # In development, use the Python script.
+            backend_path = "CreateLockScreens.py"
+        
+        logging.debug(f"Backend path: {backend_path}")
+        
+        # Choose command based on the backend type.
+        if backend_path.endswith(".py"):
+            command = [
+                sys.executable, backend_path,
+                "--start-color", f"{int(start_color[:2], 16)},{int(start_color[2:4], 16)},{int(start_color[4:], 16)}",
+                "--end-color", f"{int(end_color[:2], 16)},{int(end_color[2:4], 16)},{int(end_color[4:], 16)}",
+                "--message", message,
+                "--output-folder", folder,
+                "--width", str(width),
+                "--height", str(height)
+            ]
+        else:
+            # Backend is an executable.
+            command = [
+                backend_path,
+                "--start-color", f"{int(start_color[:2], 16)},{int(start_color[2:4], 16)},{int(start_color[4:], 16)}",
+                "--end-color", f"{int(end_color[:2], 16)},{int(end_color[2:4], 16)},{int(end_color[4:], 16)}",
+                "--message", message,
+                "--output-folder", folder,
+                "--width", str(width),
+                "--height", str(height)
+            ]
+        
+        logging.debug(f"Command: {command}")
+        
+        result = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        logging.debug(f"Result: {result.stdout}")
+        messagebox.showinfo("Success", "Countdown images have been generated successfully!")
+        print(result.stdout)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Subprocess failed: {e.stderr}")
+        messagebox.showerror("Error", f"Failed to generate images.\n{e.stderr}")
+        print("Error:", e.stderr)
+    except Exception as e:
+        logging.error(f"Unexpected error: {e}")
+        messagebox.showerror("Error", f"Unexpected error: {e}")
+        print("Error:", e)
 
 # Create main window
 root = ttkb.Window(themename="darkly")
@@ -108,10 +149,54 @@ ttkb.Button(color_frame, text="Pick End Color", command=lambda: pick_color(end_c
 # Add a dropdown for phone selection
 ttkb.Label(root, text="Select Phone Model:", font=("Menlo", 12), bootstyle="inverse-primary").pack(pady=5)
 phone_options = {
-    "iPhone 11 Pro Max": (1242, 2688),
-    "iPhone 14 Pro Max": (1290, 2796),
+    # 📱 iPhones
+    "iPhone SE (2nd & 3rd Gen)": (750, 1334),
+    "iPhone X / XS / 11 Pro": (1125, 2436),
+    "iPhone XR / 11": (828, 1792),
+    "iPhone XS Max / 11 Pro Max": (1242, 2688),
+    "iPhone 12 / 12 Pro": (1170, 2532),
+    "iPhone 12 Mini": (1080, 2340),
     "iPhone 12 Pro Max": (1284, 2778),
-    "iPhone 13": (1170, 2532)
+    "iPhone 13 Mini": (1080, 2340),
+    "iPhone 13 / 13 Pro": (1170, 2532),
+    "iPhone 13 Pro Max": (1284, 2778),
+    "iPhone 14 / 14 Pro": (1179, 2556),
+    "iPhone 14 Plus": (1284, 2778),
+    "iPhone 14 Pro Max": (1290, 2796),
+    "iPhone 15 / 15 Pro": (1179, 2556),
+    "iPhone 15 Plus": (1290, 2796),
+    "iPhone 15 Pro Max": (1290, 2796),
+
+    # 📱 Google Pixel Devices
+    "Pixel 4a": (1080, 2340),
+    "Pixel 5": (1080, 2340),
+    "Pixel 6": (1080, 2400),
+    "Pixel 6 Pro": (1440, 3120),
+    "Pixel 7": (1080, 2400),
+    "Pixel 7 Pro": (1440, 3120),
+    "Pixel 8": (1080, 2400),
+    "Pixel 8 Pro": (1344, 2992),
+
+    # 📱 Samsung Galaxy Devices
+    "Samsung Galaxy S20": (1440, 3200),
+    "Samsung Galaxy S20+": (1440, 3200),
+    "Samsung Galaxy S20 Ultra": (1440, 3200),
+    "Samsung Galaxy S21": (1080, 2400),
+    "Samsung Galaxy S21+": (1080, 2400),
+    "Samsung Galaxy S21 Ultra": (1440, 3200),
+    "Samsung Galaxy S22": (1080, 2340),
+    "Samsung Galaxy S22+": (1080, 2340),
+    "Samsung Galaxy S22 Ultra": (1440, 3088),
+    "Samsung Galaxy S23": (1080, 2340),
+    "Samsung Galaxy S23+": (1080, 2340),
+    "Samsung Galaxy S23 Ultra": (1440, 3088),
+
+    # 📱 Other Popular Phones
+    "OnePlus 8": (1080, 2400),
+    "OnePlus 8 Pro": (1440, 3168),
+    "OnePlus 9": (1080, 2400),
+    "OnePlus 9 Pro": (1440, 3216),
+    "OnePlus 10 Pro": (1440, 3216)
 }
 selected_phone = tk.StringVar(value="iPhone 11 Pro Max")
 phone_dropdown = ttkb.Combobox(root, textvariable=selected_phone, values=list(phone_options.keys()), font=("Menlo", 12), bootstyle="dark")
